@@ -6,10 +6,8 @@ import { addFinance, deleteFinance, fetchFinances } from "./services/finances";
 import { formatCurrency, getTotalValueByCurrency } from "./utils/currency";
 
 const FinancialTracker = () => {
-  const DEFAULT_KEY = "mySecretKey123";
-
   const [entries, setEntries] = useState<Finance[]>([]);
-  const [secretKey, setSecretKey] = useState<string>(DEFAULT_KEY);
+  const [secretKey, setSecretKey] = useState<string>("");
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const [showKey, setShowKey] = useState<boolean>(false);
 
@@ -103,9 +101,6 @@ const FinancialTracker = () => {
                 <Unlock size={20} />
                 Descriptografar
               </button>
-            </div>
-            <div className="mt-3 text-sm text-blue-200">
-              💡 Dica: A chave padrão é "mySecretKey123"
             </div>
           </div>
         )}
