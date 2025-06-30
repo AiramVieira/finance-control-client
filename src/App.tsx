@@ -26,6 +26,7 @@ const FinancialTracker = () => {
   };
 
   const handleDecrypt = async () => {
+    if (!secretKey) return;
     const finances = await fetchFinances(secretKey);
     finances?.length && setEntries(finances);
     setIsUnlocked(true);
