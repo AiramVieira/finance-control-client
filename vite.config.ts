@@ -1,8 +1,10 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react-swc";
 
-// https://vite.dev/config/
+import { config } from 'dotenv';
+import { defineConfig } from 'vite';
+
+config();
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
@@ -11,4 +13,9 @@ export default defineConfig({
       usePolling: true,
     },
   },
+  define: {
+    'process.env': process.env
+  }
 });
+
+
