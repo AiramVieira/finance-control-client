@@ -25,7 +25,7 @@ const FinancialTracker = () => {
     };
   };
 
-  const handleDecrypt = async () => {
+  const handleSubmit = async () => {
     if (!secretKey) return;
     const finances = await fetchFinances(secretKey);
     finances?.length && setEntries(finances);
@@ -65,28 +65,27 @@ const FinancialTracker = () => {
             Sistema Financeiro
           </h1>
           <p className="text-blue-200">
-            Controle seus valores com criptografia
+            Controle seus ganhos de maneira rápida e simples
           </p>
         </div>
 
-        {/* Área de Descriptografia */}
         {!isUnlocked && (
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 border border-white/20">
             <div className="flex items-center gap-3 mb-4">
               <Unlock className="text-yellow-400" />
               <h2 className="text-xl font-semibold text-white">
-                Descriptografar Dados
+                Gerenciar Finanças
               </h2>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1 relative">
                 <input
                   type={showKey ? "text" : "password"}
-                  placeholder="Digite a chave de descriptografia"
+                  placeholder="Use ou crie uma chave de acesso"
                   value={secretKey}
                   onChange={(e) => setSecretKey(e.target.value)}
                   className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400 pr-12"
-                  onKeyPress={(e) => e.key === "Enter" && handleDecrypt()}
+                  onKeyPress={(e) => e.key === "Enter" && handleSubmit()}
                 />
                 <button
                   onClick={() => setShowKey(!showKey)}
@@ -96,11 +95,11 @@ const FinancialTracker = () => {
                 </button>
               </div>
               <button
-                onClick={handleDecrypt}
+                onClick={handleSubmit}
                 className="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg font-medium hover:from-green-600 hover:to-blue-600 transition-all duration-200 flex items-center gap-2 border-none! justify-center"
               >
                 <Unlock size={20} />
-                Descriptografar
+                Acessar
               </button>
             </div>
           </div>
