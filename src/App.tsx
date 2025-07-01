@@ -78,7 +78,7 @@ const FinancialTracker = () => {
                 Descriptografar Dados
               </h2>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1 relative">
                 <input
                   type={showKey ? "text" : "password"}
@@ -97,7 +97,7 @@ const FinancialTracker = () => {
               </div>
               <button
                 onClick={handleDecrypt}
-                className="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg font-medium hover:from-green-600 hover:to-blue-600 transition-all duration-200 flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg font-medium hover:from-green-600 hover:to-blue-600 transition-all duration-200 flex items-center gap-2 border-none! justify-center"
               >
                 <Unlock size={20} />
                 Descriptografar
