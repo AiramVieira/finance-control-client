@@ -32,17 +32,17 @@ const FinancialTracker = () => {
     setIsUnlocked(true);
   };
 
-  const handleAddEntry = () => {
+  const handleAddEntry = async () => {
     if (!amount || !description) {
       alert("Preencha todos os campos!");
       return;
     }
 
     const newEntry: Finance = createNewEntry();
-    setEntries((prev) => (prev ? [...prev, newEntry] : [newEntry]));
 
+    const finance = await addFinance(newEntry);
+    setEntries((prev) => (prev ? [...prev, finance] : [finance]));
     clearForms();
-    addFinance(newEntry);
   };
 
   const handleDeleteEntry = (id: string) => {
