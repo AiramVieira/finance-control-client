@@ -14,7 +14,7 @@ export async function fetchFinances(secretKey: string) {
 }
 
 export async function addFinance(finance: Finance) {
-  const response = await fetch("${BASE_URL}/api/finances/add", {
+  const response = await fetch(`${BASE_URL}/api/finances/add`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
