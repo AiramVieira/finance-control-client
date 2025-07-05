@@ -5,23 +5,25 @@ const BASE_URL = process.env.VITE_BASE_URL;
 export async function fetchFinances(secretKey: string) {
   try {
     const response = await fetch(`${BASE_URL}/api/finances/${secretKey}`);
-    const record = await response.json();
-    if (!record.success) throw new Error(record.message);
-    return record.finance;
+    const { success, message, finance } = await response.json();
+    if (!success) throw new Error(message);
+    return finance;
   } catch (error: any) {
     console.error(error.message);
   }
 }
 
-export async function addFinance(finance: Finance) {
+export async function addFinance(_finance: Finance) {
   const response = await fetch(`${BASE_URL}/api/finances/add`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(finance),
+    body: JSON.stringify(_finance),
   });
-  return await response.json();
+  const { success, message, finance } = await response.json();
+  if (!success) throw new Error(message);
+  return finance;
 }
 
 export async function deleteFinance(id: string) {
