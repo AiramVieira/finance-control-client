@@ -10,10 +10,16 @@ export function formatCurrency(amount: number, currency: Currency): string {
 
 export function getTotalValueByCurrency(
   entries: Finance[],
-  currency: Currency
+  currency?: Currency,
+  conversionRate: number = 1
 ): number {
   if (!entries.length) return 0;
+
   return entries
-    .filter((entry) => entry.currency === currency)
-    .reduce((total, entry) => total + entry.amount, 0);
+    .filter((entry) => (!currency ? true : entry.currency === currency))
+    .reduce((total, entry) => {
+      const isDolar = entry.currency === "USD";
+      const amount = isDolar ? entry.amount * conversionRate : entry.amount;
+      return total + amount;
+    }, 0);
 }
